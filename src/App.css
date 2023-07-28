@@ -1,0 +1,219 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#logo {
+  /* Add the vendor prefixes for better browser support */
+  animation: spin 3s linear infinite; /* Adjust the animation duration and timing as per your requirement */
+}
+#logo:hover {
+  animation-play-state: paused; /* Stop the spinning animation on hover */
+}
+
+
+.align-logo {
+  display: inline-block;
+  vertical-align: middle; /* This will vertically center the image with the text */
+}
+
+.custom-button {
+  text-decoration: none;
+  background-color: #09434b; /* Set the background color */
+  color: #fff; /* Set the text color */
+  border: 1px solid #16b2c7; /* Set the border color */
+  padding: 8px 16px; /* Set padding for the button */
+  border-radius: 4px; /* Add rounded corners */
+  font-size: 15px; /* Set the font size */
+  cursor: pointer; /* Show the hand cursor on hover */
+}
+/* Optional: Add hover effect to the button */
+.custom-button:not(:disabled):hover {
+  background-color: #0b4f58; /* Change background color on hover */
+  color: #fff;
+  border-color: #b8c2c4; /* Change border color on hover */
+}
+
+.btnnav {
+  background-color: rgb(34, 35, 36);
+  font-size: 1.1rem;
+  color: rgb(212, 203, 203);
+  border-color: #000000; /* Change border color on hover */
+}
+.btnnav:hover {
+  background-color: rgb(19, 17, 17);
+  font-size: 1.1rem;
+  color: rgb(236, 234, 234);
+  border-color: #3a3636; /* Change border color on hover */
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, p, input, nav,button, a, div, span{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.card-title {
+  word-break: break-word;
+}
+
+.container-content {
+  /* Add styles for the container */
+  border-radius: 5px 5px 5px 5px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #1f303f;
+}
+
+
+.content-wrapper {
+  /* Add space to separate the content from the edges of the window */
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.shadow-border {
+  text-shadow: 
+    1px 1px 0px rgb(170, 216, 211),
+    -1px -1px 0px rgb(170, 216, 211),
+    1px -1px 0px rgb(170, 216, 211),
+    -1px 1px 0px rgb(170, 216, 211);
+}
+
+header {
+  background-color: #051e0f;
+  border-radius: 5px 5px 5px 5px;
+  color: #fff;
+  text-align: center;
+  padding: 40px 0;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 48px;
+  margin-bottom: 10px;
+
+}
+
+header p {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 40px 0;
+}
+
+section h2 {
+  color: #fff;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+section ul {
+  list-style-type: disc;
+  margin-left: 40px;
+}
+
+.font-white{
+  font-size: px;
+  color: #fff;
+}
+
+footer {
+  background-color: #051e0f;
+  border-radius: 5px 5px 5px 5px;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+.bgd-about{
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.custom-font-size {
+  font-size: 17px; /* Set the desired font size here */
+}
+
+.font-weight{
+  font-size: larger;
+  font-weight: 600; 
+}
+/* src/App.css */
+.dark-wide-border {
+  border: 2px solid #157788;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #f2f2f2;
+  /* width: 800px; */
+}
+
+.dark-wide-border:focus,
+.dark-wide-border:hover {
+  border-color: #60d6af;
+  outline: none;
+}
+
+
+/* Add this CSS code to your stylesheet or style block */
+/* .dark-wide-border ::placeholder { */
+  /* color: #f8f9fa !important; Set the desired light color for the placeholder text */
+/* } */
+
+/* .custom-button:disabled { */
+  /* opacity: 0.6; You can adjust the opacity or any other styles to indicate the disabled state */
+  /* cursor: not-allowed; */
+/* } */
+ 
