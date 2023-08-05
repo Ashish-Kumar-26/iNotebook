@@ -2,7 +2,7 @@ import { useState } from 'react'
 import NoteContext from './noteContext'
 
 const NoteState = (props)=>{
-    const host = "http://localhost:5000"
+    const host = 'https://inotebook-mern-app.onrender.com';  //"http://localhost:5000" //https://inotebook-mern-app.onrender.com
     const notesInitial = []
     const [notes, setNotes] = useState(notesInitial);
     const [note, setNote] = useState(notesInitial);
@@ -11,7 +11,7 @@ const NoteState = (props)=>{
     //get user details...
     const userDetails = async() =>{
       try {
-        const response = await fetch("http://localhost:5000/api/auth/getuser", {
+        const response = await fetch(`${host}/api/auth/getuser`, {
             method: "POST",
             headers: {
                 "auth-token": localStorage.getItem('token'),

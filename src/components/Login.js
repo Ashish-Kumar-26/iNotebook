@@ -13,7 +13,7 @@ const Login = (props) => {
     const handleSubmit = async(e) =>{
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("https://inotebook-mern-app.onrender.com/api/auth/login", {
             method: "POST", 
             headers: {
              "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const Login = (props) => {
             
             if (token) {
                 try {
-                    const response = await fetch("http://localhost:5000/api/auth/getuser", {
+                    const response = await fetch("https://inotebook-mern-app.onrender.com/api/auth/getuser", {
                         method: "POST",
                         headers: {
                             "auth-token": token,
