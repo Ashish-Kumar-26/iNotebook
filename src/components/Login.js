@@ -87,9 +87,7 @@ const Login = (props) => {
             </div>
         </form>
     </div>
-    <p style={{margin:'20px',opacity:'0'}}>hidden</p>
     <Footer/>
-    <p style={{margin:'10px',opacity:'0'}}>hidden</p>
     </div>
   )
 }

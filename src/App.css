@@ -51,6 +51,14 @@
   vertical-align: middle; /* This will vertically center the image with the text */
 }
 
+.text-d{
+  text-decoration: none;
+}
+
+.user-d:not(:disabled):hover{
+  font-size: 1.05rem;
+}
+
 .custom-button {
   text-decoration: none;
   background-color: #09434b; /* Set the background color */
@@ -84,13 +92,15 @@
 body {
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
-  margin: 0;
+  margin: 0; /* Remove default body margin to extend the background image to the edges */
   padding: 0;
   flex-direction: column;
-  background-size: cover;
-  background-position: center center;
   background-attachment: fixed;
   font-family: Arial, sans-serif;
+  /* background-image: url('your-background-image-url.jpg'); */
+  background-size: cover; /* This will make the background image cover the entire body */
+  background-position: center center; /* Center the background image */
+
 }
 
 h1, h2, h3, p, input, nav,button, a, div, span{
@@ -99,6 +109,11 @@ h1, h2, h3, p, input, nav,button, a, div, span{
 
 .card-title {
   word-break: break-word;
+}
+
+.card-custom-min-height {
+  min-height: 555px; /* Set a minimum height for the card */
+  margin: auto; /* Center the card horizontally */
 }
 
 .container-content {
@@ -131,11 +146,21 @@ h1, h2, h3, p, input, nav,button, a, div, span{
 }
 
 header {
-  background-color: #051e0f;
+  width: 100%;
+  background-color: #0f1214;
   border-radius: 5px 5px 5px 5px;
   color: #fff;
   text-align: center;
   padding: 40px 0;
+}
+footer {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: #0f1214;
+  border-radius: 5px 5px 5px 5px;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
 }
 
 header h1 {
@@ -171,13 +196,6 @@ section ul {
   color: #fff;
 }
 
-footer {
-  background-color: #051e0f;
-  border-radius: 5px 5px 5px 5px;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-}
 .bgd-about{
   background-color: rgba(0, 0, 0, 0);
 }

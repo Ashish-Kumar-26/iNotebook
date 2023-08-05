@@ -91,14 +91,24 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
   })
 
 
-  //ROUTE 5 : Get particular Note using: GET "/api/notes/shownote". Login required
+  //ROUTE 5 : Get particular Note using: GET "/api/notes/shownote/id". Login required
+
 router.get("/shownote/:id", fetchuser, async (req, res) => {
   try {
-    const notes = await Notes.findById(req.params.id);
-    res.json(notes);
+    const note = await Notes.findById(req.params.id);
+    if (!note) {
+      return res.status(404).json({ error: "Note not found" });
+    }
+
+    // Allow retrieval only if the user owns this note
+    if (note.user.toString() !== req.user.id) {
+      return res.status(401).json({ error: "Not authorized" });
+    }
+
+    res.json(note);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal server error");
+    res.status(500).json("Internal server error");
   }
 });
 

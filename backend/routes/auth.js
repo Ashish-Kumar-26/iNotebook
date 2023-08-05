@@ -113,4 +113,54 @@ router.post('/createuser', [
             res.status(500).send("Internal server error");
         }
     })
+
+    // Define the route for updating a user
+router.put('/updateuser/:id', fetchuser,[
+    body('name','Enter a valid name').isLength({min: 3}),
+    body('email','Enter a valid email').isEmail()
+    ], async (req, res) => {
+
+        let success = false;
+        //If there are errors, return bad request and the errors
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            return res.send({success, errors: result.array() });
+        }
+    
+    try {
+      // Extract the user ID from the URL parameter
+      const userId = req.params.id;
+      const authenticatedUserId = req.user.id;
+  
+      // Find the user to be updated
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).send("User Not Found");
+      }
+  
+      if (user._id.toString() !== authenticatedUserId) {
+        return res.status(401).send("Not Allowed");
+      }
+  
+      // Extract updated user data from the request body
+      const { name, email} = req.body;
+  
+      // Update the user object with the provided data
+      if (name) user.name = name;
+      if (email) user.email = email;
+      
+  
+      // Save the updated user
+      const updatedUser = await user.save();
+  
+      // Remove the password field from the response
+  
+      res.json({ updatedUser });
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error");
+    }
+  });
+
 module.exports = router;

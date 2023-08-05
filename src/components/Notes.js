@@ -10,6 +10,7 @@ const Notes = (props) => {
   const context = useContext(noteContext);
   let navigate = useNavigate();
   const {notes, getNotes, editNote } = context;  //const {notes, getNotes, editNote } = context; 
+  const displayedNotes = notes ? notes.slice().reverse() : notes;
   useEffect(() => {
     if(localStorage.getItem('token')){
         getNotes()
@@ -18,7 +19,7 @@ const Notes = (props) => {
         navigate('/login',{replace: true})
     }
     // eslint-disable-next-line
-},[])
+  },[])
   const ref = useRef(null);
   const refClose = useRef(null);
   const [note, setNote] = useState({id:"", etitle:"", edescription:"", etag:""})
@@ -109,9 +110,9 @@ const Notes = (props) => {
                 </ScrollLink>      
             </div>
             <div className='container text-light'>
-               {notes.length === 0 && "You haven't any notes to display. Make a new one."}
+               {displayedNotes.length === 0 && "You haven't any notes to display. Make a new one."}
             </div>
-            {notes.map((note) =>{
+            {displayedNotes.slice().reverse().map((note) =>{
             return <Noteitem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note}/>
             })}
         </div>

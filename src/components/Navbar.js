@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import noteContext from '../context/notes/noteContext';
 // import noteContext from '../context/notes/noteContext';
 
 
@@ -10,8 +11,8 @@ const Navbar = (props) => {
 
   let navigate = useNavigate();
 
-  // const context = useContext(noteContext);
-  // const { login_user, setLoginUser } = context;
+  const context = useContext(noteContext);
+  const { userDetails } = context;
  
   const handleLogout = () =>{
      localStorage.removeItem('token');
@@ -37,23 +38,26 @@ const Navbar = (props) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className={`nav-link ${location.pathname==="/main"?"active":""}`} aria-current="page" to="/main">WORK SPACE</Link>
+              <Link className={`nav-link ${location.pathname==="/main"?"active":""}`} aria-current="page" to="/main">WORKSPACE</Link>
             </li>
             <li className="nav-item">
-              <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">ABOUT</Link>
+              <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about" >ABOUT</Link>
             </li>
           </ul>
             
             {/* <a href="/" className="nav-link text-capitalize navbar-dark bg-dark">Hello </a> */}
             {localStorage.getItem('token') ? (
               <div className="d-flex align-items-center">
-                    <span className="text-white">Welcome Back! 
-                      <span style={{color:'#97FEED'}}> {loggedInUser}</span>
-                    </span>
-                    <div className="user-icon mx-3">
-                      <i className="fa-solid fa-user-graduate fa-2x" style={{color :"#A1CCD1"}}></i>
-                    </div>
-                    <button className='btn btnnav mx-1' onClick={handleLogout}>Logout</button>
+                    <span className="text-white mx-2">You're welcome !</span>
+                    <Link className='d-flex text-d mx-1' to ="/userdetails" title="Show Profile" onClick={()=>{userDetails()}} role="button">
+                      <div className='my-1 user-d'>
+                        <span className='' style={{color:'#97FEED'}}>{loggedInUser}</span>
+                      </div>
+                      <div className="user-icon user-d mx-3">
+                        <i className="fa-solid fa-user-graduate fa-2x" style={{color :"#A1CCD1"}}></i>
+                      </div>
+                    </Link>
+                    <button className='btn btnnav mx-1' onClick={handleLogout} >Logout</button>
               </div>
                 ) : (
                   

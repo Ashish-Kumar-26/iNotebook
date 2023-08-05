@@ -5,29 +5,63 @@ const NoteState = (props)=>{
     const host = "http://localhost:5000"
     const notesInitial = []
     const [notes, setNotes] = useState(notesInitial);
-    const [note,setNote] = useState(null);
-    // const [login_user,setLoginUser] = useState(null);
+    const [note, setNote] = useState(notesInitial);
+    const [user, setUser] = useState(notesInitial);
 
-    //activating logged in user name
-    // const activateLoggedinUsername = (name) =>{
-    //     setLoginUser(name);
-    // }
+    //get user details...
+    const userDetails = async() =>{
+      try {
+        const response = await fetch("http://localhost:5000/api/auth/getuser", {
+            method: "POST",
+            headers: {
+                "auth-token": localStorage.getItem('token'),
+                "Content-Type": "application/json",
+            },
+        });
+        
+        const user = await response.json();
+        setUser(user);
+  
+    } catch (error) {
+        // Handle error
+      console.error('Error fetching user details:', error);
+    }
+    }
 
+    const editUser = async (id, name, email) => {
+      // API call
+      const response = await fetch(`${host}/api/auth/updateuser/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('token')
+        },
+        body: JSON.stringify({ name, email })
+      });
+      const json = await response.json();
+      console.log(json);
+      
+    };
 
      //Get a particular note
-     const showNote = async(id) =>{
-      // API call
-      
-        const response = await fetch(`${host}/api/notes/shownote${id}`, {
-            method: "GET", 
-            headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem('token')
-            }
+     const showNote = async (id) => {
+      try {
+        // API call
+        const response = await fetch(`${host}/api/notes/shownote/${id}`, {
+          method: "GET",
+          headers: {
+            "auth-token": localStorage.getItem('token'),
+            "Content-Type": "application/json"
+          },
         });
-        const json = await response.json()             
-        setNote(json)
-     }
+  
+       const noteDetails = await response.json();
+       setNote(noteDetails);
+      } catch (error) {
+        console.error("Error fetching note details:", error);
+        return null;
+      }
+    }
 
       //Get all Notes
       const getNotes = async() =>{
@@ -39,10 +73,10 @@ const NoteState = (props)=>{
             "auth-token": localStorage.getItem('token')
             }
           });
-        const json = await response.json()             
-        setNotes(json)      
-      }
+        const json = await response.json();
 
+        setNotes(json.reverse())      
+      }
 
       //Add a Note
       const addNote = async(title,description,tag) =>{
@@ -110,7 +144,7 @@ const NoteState = (props)=>{
 
     return(
         <NoteContext.Provider value={
-          { note, notes, addNote, deleteNote, editNote, getNotes, showNote}}>
+          { user, userDetails, editUser, note, showNote, notes, addNote, deleteNote, editNote, getNotes,}}>
             {props.children}
         </NoteContext.Provider>
     )

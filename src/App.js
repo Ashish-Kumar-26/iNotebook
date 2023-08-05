@@ -12,6 +12,8 @@ import Signup from './components/Signup';
 import { useState } from 'react';
 import './App.css';
 import Inotebook from './components/Inotebook';
+import ShowNote from './components/ShowNote';
+import UserDetails from './components/UserDetails';
 
 function App(props) {
   const [alert, setAlert] = useState(null);
@@ -31,20 +33,27 @@ function App(props) {
   // Function to get the background image based on the current route
   const getBackgroundImage = () => {
 
-    // https://images.unsplash.com/photo-1467241850596-6a0de48568da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80
-    // https://images.unsplash.com/photo-1493673272479-a20888bcee10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80
+    const bg_home = 'https://images.unsplash.com/photo-1547043736-b2247cb34b01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80';
     const bg_auth = 'https://images.unsplash.com/photo-1688494930045-328d0f95efe9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+    const bg_main = 'https://plus.unsplash.com/premium_photo-1661286621197-ba9f83f2fccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+    const bg_abt = 'https://images.unsplash.com/photo-1613202637480-6950934de9ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1452&q=80';
+    const bg_user = 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80'; 
+
     switch (location.pathname) {
       case '/':
-        return 'https://images.unsplash.com/photo-1467241850596-6a0de48568da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80';
+        return bg_home;
       case '/main':
-        return 'https://plus.unsplash.com/premium_photo-1661286621197-ba9f83f2fccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+        return bg_main;
       case '/about':
-        return 'https://images.unsplash.com/photo-1493673272479-a20888bcee10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+        return bg_abt;
       case '/login':
         return bg_auth;
       case '/signup':
         return bg_auth;
+      case '/notedetails':
+        return bg_main;
+      case '/userdetails':
+        return bg_user;
       default:
         return 'none';
     }
@@ -60,6 +69,8 @@ function App(props) {
             <Route path="/" element={<Inotebook/>} />
             <Route path="/main" element={<Home showAlert={showAlert} />} />
             <Route path="/about" element={<About />} />
+            <Route path="/notedetails" element={<ShowNote showAlert={showAlert}/>} />
+            <Route path="/userdetails" element={<UserDetails showAlert={showAlert}/>} />
             <Route path="/login" element={<Login showAlert={showAlert} />} />
             <Route path="/signup" element={<Signup showAlert={showAlert} />} />
           </Routes>
